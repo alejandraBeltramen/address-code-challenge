@@ -4,8 +4,8 @@ It gets a huge list of address from an API (.txt file), parses them into Address
 
 ## Useful links
 
-LIVE DEMO: https://alejandrabeltramen.github.io/address-code-challenge/
-Explanation: https://docs.google.com/document/d/1SC8hQC-336Uv4RTaG7-pPLWrK501C5Op_Ie4_tx527M/edit?usp=sharing
+- LIVE DEMO: https://alejandrabeltramen.github.io/address-code-challenge/
+- Explanation: https://docs.google.com/document/d/1SC8hQC-336Uv4RTaG7-pPLWrK501C5Op_Ie4_tx527M/edit?usp=sharing
 
 ## Development server
 
