@@ -1,0 +1,21 @@
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="tableDataSource" matSort>
+    <ng-container [matColumnDef]="column" *ngFor="let column of tableColumns">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       [ngClass]="'custom-width'">
+        {{ column }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'custom-width'">
+        <input type="text"
+               placeholder="{{element[column]}}"
+               class="cell-input"
+               [value]="element[column]"
+               (keydown.enter)="onCellChange($event, element, column)">
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="tableColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="amountTablePagine" showFirstLastButtons></mat-paginator>
+</div>

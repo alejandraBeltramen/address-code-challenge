@@ -1,31 +1,43 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { of, BehaviorSubject } from 'rxjs';
+import { LoadingService } from './ui-core/loading/loading.service';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let loadingServiceMock;
+  let loadingServiceSpy;
+
   beforeEach(async(() => {
+    loadingServiceMock = {
+      show: () => of(true),
+      hide: () => of(false),
+      visibility: new BehaviorSubject(true)
+    };
+
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+      declarations: [ AppComponent ],
+      providers: [{
+        provide: LoadingService, useValue: loadingServiceMock
+      }]});
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'address-code-challenge'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('address-code-challenge');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('address-code-challenge app is running!');
+
+    loadingServiceSpy = TestBed.inject(LoadingService);
+  });
+
+  afterEach(() => {
+    fixture.destroy();
+  });
+
+  describe('Initialization', () => {
+    it('should create the app', () => {
+      expect(component).toBeTruthy();
+    });
   });
 });
